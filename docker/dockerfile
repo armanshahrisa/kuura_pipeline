@@ -1,4 +1,4 @@
-FROM ubuntu:20.04
+FROM ubuntu:24.04
 
 LABEL \
     author="Dhanaprakash Jambulingam" \
@@ -232,8 +232,9 @@ RUN cd /tools/ \
 
 ## Installing MultiQC
 RUN cd /tools/ \
-    && wget https://github.com/ewels/MultiQC/archive/master.zip \
-    && unzip master.zip \
+    && wget https://github.com/MultiQC/MultiQC/archive/refs/heads/main.zip \
+    && unzip main.zip \
+    && mv MultiQC-main MultiQC-master \
     && cd MultiQC-master \
     && pip3 install .
 
@@ -248,7 +249,7 @@ RUN cd /tools/ \
     && rm bcftools-${bcftools_version}.tar.bz2 \
     && rm htslib-${htslib_version}.tar.bz2 \
     && rm bedtools-${bedtools_version}.tar.gz \
-    && rm master.zip \
+    && rm main.zip \
     && rm gatk-${gatk_version}.zip \
     && rm ${STAR_version}.tar.gz \
     && rm subread-${subread_version}-Linux-x86_64.tar.gz
